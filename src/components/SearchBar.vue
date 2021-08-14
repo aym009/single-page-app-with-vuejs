@@ -1,5 +1,10 @@
 <template>
   <input type="text" placeholder="Search shows" v-model="searchQuery" />
+  <button
+    @click="$router.push({name: 'SearchResults', params: { searchQuery: searchQuery }})"
+    :disabled="!searchQuery">
+    Search
+  </button>
   <p>{{ searchQuery }}</p>
 </template>
 
