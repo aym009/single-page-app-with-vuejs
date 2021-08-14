@@ -1,7 +1,5 @@
 <template>
-  <li>
-    {{ show.id }}
-  </li>
+  {{ show.id }}
 </template>
 
 <script>
