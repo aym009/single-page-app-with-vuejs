@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p>Display Mode</p>
+  <div class="display-switcher">
+    <span>Display Mode</span>
     <input v-model="displayMode" id="grid-mode" class="toggle toggle-left" name="display-mode" value="grid" type="radio" checked>
     <label for="grid-mode" class="toggle-btn">Grid</label>
     <input v-model="displayMode" id="list-mode" class="toggle toggle-right" name="display-mode" value="list" type="radio">
@@ -27,6 +27,19 @@ export default {
 </script>
 
 <style lang="scss">
+.display-switcher {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 30px;
+  margin-bottom: 30px;
+
+  span {
+    font-size: .8em;
+    line-height: 2.2em;
+    margin-right: 10px;
+  }
+}
+
 .toggle-btn{
   border: 3px solid #1a1a1a;
   display: inline-block;
@@ -58,8 +71,6 @@ input[type="radio"].toggle {
   }
 
   &.toggle-left + label {
-    border-right: 0;
-
     &:after{
       left: 100%
     }
@@ -77,9 +88,36 @@ input[type="radio"].toggle {
     cursor: default;
     color: #fff;
     transition: color 200ms;
-    
+
     &:after{
       left: 0;
+    }
+  }
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+
+  li {
+    text-align: center;
+    width: 31%;
+    min-width: 250px;
+    margin-bottom: 20px;
+  }
+
+  &.listMode {
+    display: block;
+
+    li {
+      text-align: left;
+      height: 100px;
+      width: 100%;
     }
   }
 }
