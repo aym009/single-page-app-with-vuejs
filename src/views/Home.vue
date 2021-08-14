@@ -1,12 +1,24 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+  <div v-if="shows.length">
+    <ShowList :shows="shows" />
   </div>
 </template>
 
 <script>
+import ShowList from '../components/ShowList.vue'
+
 export default {
-  name: 'Home',
-  components: { }
+  components: { ShowList },
+  data() {
+    return {
+      shows: []
+    }
+  },
+  mounted() {
+    fetch('https://api.tvmaze.com/shows?page=1')
+      .then(res => res.json())
+      .then(data => this.shows = data)
+      .catch(err => console.log(err.message))
+  }
 }
 </script>
