@@ -6,18 +6,20 @@
     <input v-model="displayMode" id="list-mode" class="toggle toggle-right" name="display-mode" value="list" type="radio">
     <label for="list-mode" class="toggle-btn">List</label>
   </div>
-  <ul :class="{ listMode: displayMode === 'list' }">
-    <li v-for="show in shows" :key="show.id">
-      <Show :show="show" />
-    </li>
+  <ul v-if="isSearchResults" :class="{ listMode: displayMode === 'list' }">
+    <Show v-for="show in shows" :key="show.id" :show="show.show" />
+  </ul>
+  <ul v-else :class="{ listMode: displayMode === 'list' }">
+    <Show v-for="show in shows" :key="show.id" :show="show" />
   </ul>
 </template>
 
 <script>
 import Show from './Show.vue'
+
 export default {
   components: { Show },
-  props: ['shows'],
+  props: ['shows', 'isSearchResults'],
   data() {
     return {
       displayMode: ''
