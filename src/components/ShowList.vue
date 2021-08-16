@@ -137,7 +137,6 @@ input[type="radio"].toggle {
 ul {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   list-style: none;
   width: 100%;
   max-width: 900px;
@@ -145,9 +144,13 @@ ul {
 
   li {
     text-align: center;
-    width: 31%;
+    width: 32%;
     min-width: 250px;
     margin-bottom: 20px;
+
+    &:not(:nth-of-type(3n)) {
+      margin-right: 2%;
+    }
   }
 
   &.listMode {

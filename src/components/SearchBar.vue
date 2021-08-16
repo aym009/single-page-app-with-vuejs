@@ -2,7 +2,7 @@
   <header>
     <input type="text" placeholder="Search..." v-model="searchQuery" />
     <button
-      @click="$router.push({name: 'SearchResults', params: { searchQuery: searchQuery }})"
+      @click="$router.push({ name: 'SearchResults', params: { searchQuery: searchQuery }})"
       :disabled="!searchQuery">
       Search
     </button>
