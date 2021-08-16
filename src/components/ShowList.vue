@@ -7,10 +7,12 @@
     <label for="list-mode" class="toggle-btn">List</label>
   </div>
   <ul v-if="isSearchResults" :class="{ listMode: displayMode === 'list' }">
-    <Show v-for="show in shows" :key="show.show.id" :show="show.show" />
+    <Show v-for="show in updatedShows" :key="show.show.id" :show="show.show" />
+    <div ref="observe_element"></div>
   </ul>
   <ul v-else :class="{ listMode: displayMode === 'list' }">
-    <Show v-for="show in shows" :key="show.id" :show="show" />
+    <Show v-for="show in updatedShows" :key="show.id" :show="show" />
+    <div ref="observe_element"></div>
   </ul>
 </template>
 
@@ -22,7 +24,42 @@ export default {
   props: ['shows', 'isSearchResults'],
   data() {
     return {
-      displayMode: ''
+      displayMode: '',
+      observer: null,
+      updatedShows: [],
+      startIndex: 0,
+      endIndex: 0,
+      // ToDo: showsPerPage should be configured via application configuration
+      showsPerPage: 50
+    }
+  },
+  mounted() {
+    // Using Intersection Observer for Infinite Scroll
+    this.observer = new IntersectionObserver((entries) => {
+      const entry = entries[0]
+
+      if (entry && entry.isIntersecting) {
+        this.updateShowsArr()
+      }
+    })
+
+    const observeElement = this.$refs.observe_element
+    this.observer.observe(observeElement)
+  },
+  methods: {
+    updateShowsArr() {
+      this.endIndex += this.showsPerPage
+      this.updatedShows = [...this.updatedShows, ...this.shows.slice(this.startIndex, this.endIndex)]
+      this.startIndex = this.updatedShows.length + 1
+    }
+  },
+  watch: {
+    shows() {
+      this.updatedShows = []
+      this.startIndex = 0
+      this.endIndex = this.showsPerPage
+      this.updatedShows = [...this.updatedShows, ...this.shows.slice(this.startIndex, this.endIndex)]
+      this.startIndex = this.updatedShows.length + 1
     }
   }
 }

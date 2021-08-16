@@ -2,7 +2,9 @@
   <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   <p v-else-if="!shows.length">"{{ searchQuery }}" has no search result</p>
   <p v-else>Search results of "{{ searchQuery }}"</p>
-  <ShowList :shows="shows" :isSearchResults="true" />
+  <div v-if="shows.length">
+    <ShowList :shows="shows" :isSearchResults="true" />
+  </div>
 </template>
 
 <script>

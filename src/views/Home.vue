@@ -17,7 +17,7 @@ export default {
     }
   },
   mounted() {
-    fetch('https://api.tvmaze.com/shows?page=1')
+    fetch('https://api.tvmaze.com/shows')
       .then(res => res.json())
       .then(data => this.shows = data)
       .catch(err => this.errorMessage = err.message)

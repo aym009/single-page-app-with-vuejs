@@ -90,7 +90,6 @@ export default {
   }
 
   .show-details {
-    // display: inline-block;
     padding-left: 15px;
 
     h4, .genres {
