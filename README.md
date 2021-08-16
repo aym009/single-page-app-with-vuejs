@@ -1,4 +1,5 @@
 # single-page-app-with-vuejs
+Single page application based on VueJs 3 with [TVMaze api](http://www.tvmaze.com/api).
 
 ## Project setup
 ```
@@ -15,5 +16,7 @@ npm run serve
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Run unit test
+```
+npm run test:unit
+```
