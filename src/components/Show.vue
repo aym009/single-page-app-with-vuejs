@@ -1,6 +1,6 @@
 <template>
 <li class="show-item">
-  <img v-if="show.image" :src="show.image.medium" alt="">
+  <img v-if="show.image" :src="show.image.medium" :alt="show.name">
   <p v-else class="no-image">No Image Available</p>
   <div class="show-details">
     <h4>{{ show.name }}</h4>
@@ -8,8 +8,8 @@
       <span v-for="genre in show.genres" :key="genre">{{ genre }}</span>
     </div>
     <div class="show-details-actions">
-      <a :href="show.url" target="_blank">Show Details</a>
-      <a :href="show.officialSite" target="_blank">Official Site</a>
+      <a v-if="show.url" :href="show.url" target="_blank">Show Details</a>
+      <a v-if="show.officialSite" :href="show.officialSite" target="_blank">Official Site</a>
     </div>
   </div>
 </li>
