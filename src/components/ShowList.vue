@@ -7,7 +7,7 @@
     <label for="list-mode" class="toggle-btn">List</label>
   </div>
   <ul v-if="isSearchResults" :class="{ listMode: displayMode === 'list' }">
-    <Show v-for="show in shows" :key="show.id" :show="show.show" />
+    <Show v-for="show in shows" :key="show.show.id" :show="show.show" />
   </ul>
   <ul v-else :class="{ listMode: displayMode === 'list' }">
     <Show v-for="show in shows" :key="show.id" :show="show" />

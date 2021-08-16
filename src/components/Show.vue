@@ -25,7 +25,6 @@ export default {
 .show-item {
   background: #fff;
   border-radius: 2px;
-  height: 100%;
   padding: 20px;
 
   img {

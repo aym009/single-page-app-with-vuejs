@@ -1,4 +1,5 @@
 <template>
+  <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   <div v-if="shows.length">
     <ShowList :shows="shows" />
   </div>
@@ -11,14 +12,15 @@ export default {
   components: { ShowList },
   data() {
     return {
-      shows: []
+      shows: [],
+      errorMessage: ''
     }
   },
   mounted() {
     fetch('https://api.tvmaze.com/shows?page=1')
       .then(res => res.json())
       .then(data => this.shows = data)
-      .catch(err => console.log(err.message))
+      .catch(err => this.errorMessage = err.message)
   }
 }
 </script>

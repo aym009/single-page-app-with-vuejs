@@ -1,5 +1,7 @@
 <template>
-  <p>Search results of "{{ searchQuery }}"</p>
+  <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+  <p v-else-if="!shows.length">"{{ searchQuery }}" has no search result</p>
+  <p v-else>Search results of "{{ searchQuery }}"</p>
   <ShowList :shows="shows" :isSearchResults="true" />
 </template>
 
@@ -11,7 +13,8 @@ export default {
   props: ['searchQuery'],
   data() {
     return {
-      shows: []
+      shows: [],
+      errorMessage: ''
     }
   },
   mounted() {
@@ -32,7 +35,7 @@ export default {
               }
             })
         })
-        .catch(err => console.log(err.message))
+        .catch(err => this.errorMessage = err.message)
     }
   },
   watch: { 
